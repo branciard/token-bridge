@@ -139,7 +139,7 @@ async function main({ sendToQueue }) {
     if (events.length) {
       const job = await processEvents(events)
       logger.info('Transactions to send:', job.length)
-
+      logger.error('Transactions to send:', job.length)
       if (job.length) {
         await sendToQueue(job)
       }
