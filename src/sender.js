@@ -117,6 +117,7 @@ async function main({ msg, ackMsg, nackMsg, sendToQueue, channel }) {
 
       try {
         logger.info(`Sending transaction with nonce ${nonce}`)
+        logger.error(`Sending transaction with nonce ${nonce}`)
         const txHash = await sendTx({
           chain: config.id,
           data: job.data,
@@ -169,6 +170,7 @@ async function main({ msg, ackMsg, nackMsg, sendToQueue, channel }) {
 
     if (failedTx.length) {
       logger.info(`Sending ${failedTx.length} Failed Tx to Queue`)
+      logger.error(`Sending ${failedTx.length} Failed Tx to Queue`)
       await sendToQueue(failedTx)
     }
     ackMsg(msg)
