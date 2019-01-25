@@ -6,9 +6,16 @@ connection.on('connect', () => {
   logger.info('Connected to amqp Broker')
 })
 
-connection.on('disconnect', () => {
-  logger.error('Disconnected from amqp Broker')
+connection.on('disconnect', (params) => {
+  logger.error('------------------------------');
+  logger.error('Disconnected from amqp Broker');
+  logger.error('Disconnected from amqp Broker params :', params.err.stack)
+  logger.error('Disconnected from amqp Broker params.err.stack :', params.err.stack)
+  logger.error('------------------------------');
 })
+
+
+
 
 function connectWatcherToQueue({ queueName, cb }) {
   const channelWrapper = connection.createChannel({
