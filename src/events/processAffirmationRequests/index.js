@@ -80,7 +80,11 @@ function processAffirmationRequestsBuilder(config) {
             throw e
           }
         }
-
+        logger.error(
+          `processAffirmationRequests executeAffirmation, value is ${
+            value
+          }, over the limit ?`
+        )
         const data = await homeBridge.methods
           .executeAffirmation(recipient, value, affirmationRequest.transactionHash)
           .encodeABI({ from: config.validatorAddress })

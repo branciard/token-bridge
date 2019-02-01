@@ -75,7 +75,11 @@ function processTransfersBuilder(config) {
             throw e
           }
         }
-
+        logger.error(
+          `processTransfers executeAffirmation, value is ${
+            value
+          }, over the limit ?`
+        )
         const data = await homeBridge.methods
           .executeAffirmation(from, value, transfer.transactionHash)
           .encodeABI({ from: config.validatorAddress })
